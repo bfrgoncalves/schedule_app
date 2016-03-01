@@ -1,0 +1,28 @@
+#totalContent{
+	width:100%;
+	height: 100%;
+}
+
+.contentDiv{
+	margin-top: 3%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+#resultsInfo{
+	display: none;
+}
+
+#scheduleInfo{
+	display: block;
+}
+
+
+.scheduletable{
+	margin-top: 5%;
+}
+
+tbody tr:hover{
+	background-color: #deedde;
+	cursor: pointer;
+}
