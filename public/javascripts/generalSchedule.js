@@ -36,8 +36,6 @@ function constructSchedule(schedule, sessions){
 		$('#body' + toCheck[i]).append(toAppend);
 	}
 
-	$('#table1').table( "rebuild" );
-
 	$('.scheduletable tbody tr').click(function(){
 		var rowData = $(this).children("td").map(function() {
 	        return $(this).text();

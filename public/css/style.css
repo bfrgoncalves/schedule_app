@@ -1,5 +1,7 @@
 table{
+	width: 100%;
 	font-size: 80%;
+	min-width:10%;
 }
 
 #totalContent{
@@ -15,12 +17,12 @@ table{
 
 .firstColumn{
 	width: 10%;
-	text-align: center;
+	padding: 1%;
 }
 
 .secondColumn{
 	width: 90%;
-	text-align: center;
+	padding: 1%;
 }
 
 #resultsInfo{
