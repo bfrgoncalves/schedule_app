@@ -77,9 +77,9 @@ function displayResults(results){
 		toAppend = '';
 		for(i in results){
 			console.log(results[i]);
-			toAppend += '<tr><td>Abstract ID:</td><td> ' + results[i].presentationID + '</td></tr>';
-			toAppend += '<tr><td>Abstract Title:</td><td> ' + results[i].presentation.title + '</td></tr>';
-			toAppend += '<tr><td>Speaker:</td><td> ' + results[i].presentation.speaker + '</td></tr>';
+			toAppend += '<tr><td class="firstColumn">Abstract ID:</td><td class="secondColumn"> ' + results[i].presentationID + '</td></tr>';
+			toAppend += '<tr><td class="firstColumn">Abstract Title:</td><td class="secondColumn"> ' + results[i].presentation.title + '</td></tr>';
+			toAppend += '<tr><td class="firstColumn">Speaker:</td><td class="secondColumn"> ' + results[i].presentation.speaker + '</td></tr>';
 				
 			var authors = results[i].presentation.authors.split(';');
 			var newAuthors = [];
@@ -87,15 +87,15 @@ function displayResults(results){
 				var formatedAuthor = authors[x].split('_')[0] + '<sup>' + authors[x].split('_')[1] + '</sup>';
 				newAuthors.push(formatedAuthor);
 			}
-			toAppend += '<tr><td>Authors:</td><td> ' + newAuthors.toString() + '</td></tr>';
+			toAppend += '<tr><td class="firstColumn">Authors:</td><td class="secondColumn"> ' + newAuthors.toString() + '</td></tr>';
 			
 			var affiliations = results[i].presentation.affiliations;
 			for(p in affiliations){
 				affiliations[p] = '(' + (parseInt(p)+parseInt(1)) + ')' + affiliations[p];
 			}
-			toAppend += '<tr><td>Affiliation:</td><td> ' + affiliations.toString() + '</td></tr>';
-			toAppend += '<tr><td>Session:</td><td> ' + results[i].sessionInfo[1] + '</td></tr>';
-			toAppend += '<tr><td>Schedule:</td><td> ' + results[i].sessionInfo[2] + '</td></tr>';
+			toAppend += '<tr><td class="firstColumn">Affiliation:</td><td class="secondColumn"> ' + affiliations.toString() + '</td></tr>';
+			toAppend += '<tr><td class="firstColumn">Session:</td><td class="secondColumn"> ' + results[i].sessionInfo[1] + '</td></tr>';
+			toAppend += '<tr><td class="firstColumn">Schedule:</td><td class="secondColumn"> ' + results[i].sessionInfo[2] + '</td></tr>';
 			toAppend += '<tr></tr>';
 		}
 	}

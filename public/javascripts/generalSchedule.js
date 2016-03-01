@@ -22,12 +22,12 @@ function constructSchedule(schedule, sessions){
 		var firstTime = true;
 		for(j in schedule[toCheck[i]]){
 			if(firstTime == true){
-				$('#header' + toCheck[i]).append('<tr><td>Time</td><td>Topics</td></tr>');
+				$('#header' + toCheck[i]).append('<tr><td class="firstColumn"><b>Time</b></td><td class="secondColumn"><b>Topics</b></td></tr>');
 				firstTime = false;
 			}
 
-			if(schedule[toCheck[i]][j].session_id && schedule[toCheck[i]][j].session_id > 0) toAppend += '<tr><td>'+schedule[toCheck[i]][j].time+'</td><td>'+ schedule[toCheck[i]][j].topics +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
-			else if(j != 'date') toAppend += '<tr><td>'+schedule[toCheck[i]][j].time+'</td><td>'+schedule[toCheck[i]][j].topics+'</td></tr>';
+			if(schedule[toCheck[i]][j].session_id && schedule[toCheck[i]][j].session_id > 0) toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+ schedule[toCheck[i]][j].topics +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
+			else if(j != 'date') toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
 		}
 		toAppend = toAppend.replace(/\n/g, '<br>');
 		toAppend = toAppend.replace(/\\n/g, '<br>');
@@ -55,7 +55,7 @@ function getSessionInformation(rowData, sessions){
 		$('#bodysessionInfoTable').empty();
 		$('#sessionInfoSection').empty();
 		var toAppend = '';
-		toAppend += '<tr><td>Title</td><td>Speaker</td></tr>';
+		toAppend += '<tr><td class="secondColumn">Title</td><td class="firstColumn">Speaker</td></tr>';
 		$('#headersessionInfoTable').append(toAppend);
 		toAppend = '';
 		toAppend += '<p>' + sessions[sessionToSearch].subject + '</p>';
@@ -63,7 +63,7 @@ function getSessionInformation(rowData, sessions){
 		$('#sessionInfoSection').append(toAppend);
 		toAppend = '';
 		for(i in sessions[sessionToSearch].presentations){
-			toAppend += '<tr><td>' + sessions[sessionToSearch].presentations[i].title + '</td><td>' + sessions[sessionToSearch].presentations[i].speaker + '</td></tr>';
+			toAppend += '<tr><td class="secondColumn">' + sessions[sessionToSearch].presentations[i].title + '</td><td class="firstColumn">' + sessions[sessionToSearch].presentations[i].speaker + '</td></tr>';
 		}
 		$('#bodysessionInfoTable').append(toAppend);
 
