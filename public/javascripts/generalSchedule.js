@@ -99,8 +99,13 @@ function getPosterSessionInformation(rowData, allPosters, sessions){
 	toAppend += '<p>Poster Session: ' + sessionToSearch + '</p>';
 	$('#sessionInfoSection').append(toAppend);
 	toAppend = '';
+	var currentIssue = -1;
 	for(i in allPosters[sessionToSearch].posters){
-		toAppend += '<tr><td class="firstPosterColumn">' + i + '</td><td class="secondPosterColumn">' + allPosters[sessionToSearch].posters[i].title + '</td><td class="thirdPosterColumn">' + allPosters[sessionToSearch].posters[i].speaker + '</td></tr>';
+		if (currentIssue != allPosters[sessionToSearch].posters[i].session_id){
+			toAppend += '<tr><td class="breakLine divider"><label><b> Session '+allPosters[sessionToSearch].posters[i].session_id +'</b></label></td><td class="breakLine divider"><label><b>' + sessions[allPosters[sessionToSearch].posters[i].session_id].subject + '</b></label></td><td class="breakLine divider"></td></tr>';
+			currentIssue = allPosters[sessionToSearch].posters[i].session_id;
+		}
+		toAppend += '<tr><td class="firstPosterColumn">' + i + '</td><td class="secondPosterColumn">' + allPosters[sessionToSearch].posters[i].title + '</td><td class="thirdPosterColumn">'+allPosters[sessionToSearch].posters[i].speaker+'</td></tr>';
 	}
 	$('#bodysessionInfoTable').append(toAppend);
 

@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="public/javascripts/readSchedule.js"></script>
 	<script type="text/javascript" src="public/javascripts/schedule_utils.js"></script>
+	<script type="text/javascript" src="public/javascripts/specialCasesFormat.js"></script>
 	<script type="text/javascript" src="public/javascripts/read_csv.js"></script>
 	<script type="text/javascript" src="public/javascripts/parseInformation.js"></script>
 	<script type="text/javascript" src="public/javascripts/generalSchedule.js"></script>
@@ -24,8 +25,8 @@
 	        <h1>XI IMMEM</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content" style="text-align:center;">
+	    	<div><a href="//www.escmid.org/research_projects/escmid_conferences/immem_xi/"><img style="width:75%" src="public/images/sponsors/immem_xi.png"></a></div>
 	    	<div style="margin:10%;">
-				<div><a href="//www.escmid.org/research_projects/escmid_conferences/immem_xi/"><img style="width:50%" src="public/images/sponsors/immem_xi.png"></a></div>
 				<div><a href="//www.applied-maths.com/"><img style="width:50%;" src="public/images/sponsors/appliedmaths.png"></a></div>
 				<div><a href="//www.biomerieux.com/"><img style="width:50%;" src="public/images/sponsors/biomerieux.png"></a></div>
 				<div><a href="//www.nanoporetech.com/"><img style="width:50%;" src="public/images/sponsors/nonopore.png"></a></div>
@@ -136,7 +137,14 @@
 
 
 		<div id="footerdiv" data-role="footer" data-position="fixed" style="text-align:center;">
-			<button id="buttonSchedule" class="ui-btn ui-icon-home ui-btn-icon-left ui-shadow ui-corner-all">Schedule</button>
+			<div class="ui-grid-b">
+			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="text-align:left;">
+					<button id="buttonBack" style="text-align:left;display:none;" class="ui-btn ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all">Back</button>
+				</div></div>
+			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="text-align:center;">
+					<button id="buttonSchedule" class="ui-btn ui-icon-home ui-btn-icon-left ui-shadow ui-corner-all">Schedule</button>
+				</div></div>
+			</div><!-- /grid-b -->
 		</div><!-- /footer -->
 	</div><!-- /page -->
 

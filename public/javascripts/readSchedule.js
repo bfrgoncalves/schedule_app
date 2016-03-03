@@ -21,8 +21,8 @@ function readSchedule(scheduleObject, callback){
 			allPosters = results;
 			scheduleUtils.getSchedule(scheduleLocation, function(results){
 				schedule = results;
-				scheduleUtils.getPresentations(sessions, allPosters, presentationsLocation, function(allNames, allTitles){
-					callback({sessions:sessions, schedule:schedule, allNames:allNames, allTitles:allTitles, allPosters:allPosters});
+				scheduleUtils.getPresentations(sessions, allPosters, presentationsLocation, function(allNames, allTitles, allPresenters){
+					callback({sessions:sessions, schedule:schedule, allNames:allNames, allTitles:allTitles, allPosters:allPosters, allPresenters: allPresenters});
 				});
 			});
 		});

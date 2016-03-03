@@ -14,10 +14,17 @@ $(document).ready(function(){
 		alltitles = scheduleData.allTitles;
 		schedule = scheduleData.schedule;
 		allPosters = scheduleData.allPosters;
+		allPresenters = scheduleData.allPresenters;
+		console.log(allPresenters);
+
+		console.log(sessions);
+		console.log(allPosters);
 
 		assignAttributesToSearch(sessions, allPosters, allnames, 'listviewName');
 		assignAttributesToSearch(sessions, allPosters, alltitles, 'listviewTitle');
 		constructSchedule(schedule, sessions, allPosters);
+		//exportPosters(allPosters);
+		//getPresenterInfo(allnames, allPosters, sessions)
 	});
 
 	$('.buttonHome').click(function(){
@@ -34,6 +41,15 @@ $(document).ready(function(){
 		$('#totalContentschedule').css({'display':'block'});
 		$('#totalContentsessoinInfo').css({'display':'none'});
 		$('.mypage').css({'display':'none'});
+	});
+
+	$('#buttonBack').click(function(){
+		$("[data-role=panel]").panel("close");
+		$('#totalContentresults').css({'display':'none'});
+		$('#totalContentschedule').css({'display':'none'});
+		$('#totalContentsessoinInfo').css({'display':'block'});
+		$('.mypage').css({'display':'none'});
+		$('#buttonBack').css({'display':'none'});
 	});
 
 	$('#autocomplete-input-name').click(function(){
@@ -127,8 +143,8 @@ function displayResults(TotalResults, dataInfo){
 
 			for(i in results){
 				toAppend += '<tr><td class="firstColumn divider"> </td><td class="secondColumn divider"> </td></tr>';
-				toAppend += '<tr><td class="firstColumn">Abstract ID:</td><td class="secondColumn"> ' + results[i].presentationID + '</td></tr>';
-				toAppend += '<tr><td class="firstColumn">Abstract Title:</td><td class="secondColumn"> ' + results[i].presentation.title + '</td></tr>';
+				toAppend += '<tr><td class="firstColumn">ID:</td><td class="secondColumn"> ' + results[i].presentationID + '</td></tr>';
+				toAppend += '<tr><td class="firstColumn">Title:</td><td class="secondColumn"> ' + results[i].presentation.title + '</td></tr>';
 				toAppend += '<tr><td class="firstColumn">Presenter:</td><td class="secondColumn"> ' + results[i].presentation.speaker + '</td></tr>';
 					
 				var authors = results[i].presentation.authors.split(';');
@@ -167,7 +183,120 @@ function displayResults(TotalResults, dataInfo){
 	//$('#resultsDiv').css({'display':'block'});
 
 	$('#totalContentresults').css({'display':'block'});
+	$('#buttonBack').css({'display':'block'});
 	$('#totalContentschedule').css({'display':'none'});
 	$('#totalContentsessoinInfo').css({'display':'none'});
+
+}
+
+
+function exportPosters(posterInfo){
+
+	var results = '';
+	for (i in posterInfo){
+		console.log(posterInfo[i].posters);
+		for(j in posterInfo[i].posters){
+			var affiliations = posterInfo[i].posters[j].affiliations;
+			for(x in affiliations){
+				affiliations[x] = (parseInt(x) + 1) + '_' + affiliations[x];
+			}
+			results += 'PO' + j + ' - ' + specialCasesFormat(posterInfo[i].posters[j].title) + '\n' + posterInfo[i].posters[j].authors + '\n' + affiliations.toString() + '\n\n';
+		}
+	}
+	//console.log(stringToMatrix);
+
+
+	var encodedUriMatrix = 'data:text/csv;charset=utf-8,' + encodeURIComponent(results);
+	
+	var a = $('<p>Download <a id="linkDownloadMatrix">Distance Matrix</a></p>');
+
+	$('#scheduleInfo').append(a);
+	$('#linkDownloadMatrix').attr("href", encodedUriMatrix).attr('download', "posters.txt");
+	$('#linkDownloadMatrix').trigger('click');
+}
+
+function exportPosters(sessions, posterInfo, allNames){
+
+	var results = '';
+	for (i in posterInfo){
+		console.log(posterInfo[i].posters);
+		for(j in posterInfo[i].posters){
+			var affiliations = posterInfo[i].posters[j].affiliations;
+			for(x in affiliations){
+				affiliations[x] = (parseInt(x) + 1) + '_' + affiliations[x];
+			}
+			results += 'PO' + j + ' - ' + specialCasesFormat(posterInfo[i].posters[j].title) + '\n' + posterInfo[i].posters[j].authors + '\n' + affiliations.toString() + '\n\n';
+		}
+	}
+	//console.log(stringToMatrix);
+
+
+	var encodedUriMatrix = 'data:text/csv;charset=utf-8,' + encodeURIComponent(results);
+	
+	var a = $('<p>Download <a id="linkDownloadMatrix">Distance Matrix</a></p>');
+
+	$('#scheduleInfo').append(a);
+	$('#linkDownloadMatrix').attr("href", encodedUriMatrix).attr('download', "posters.txt");
+	$('#linkDownloadMatrix').trigger('click');
+}
+
+function getPresenterInfo(allNames, allPosters, sessions){
+
+	var objectOfNames = {};
+	for(x in allNames){
+		if (allNames[x].trim() == '') continue;
+		var nameSplited = allNames[x].split(' ');
+		var lengthName = nameSplited.length;
+		var firstName = allNames[x].split(' ')[0];
+		var lastName = allNames[x].split(' ')[lengthName-1];
+
+		var newName = lastName + ', ' + firstName;
+
+		if(!objectOfNames.hasOwnProperty(newName)){
+			objectOfNames[newName] = {};
+			objectOfNames[newName].posters = [];
+			objectOfNames[newName].presentations = [];
+		}
+
+		for(z in allPosters){
+			for(c in allPosters[z].posters){
+				if(allPosters[z].posters[c].authors.indexOf(allNames[x].trim()) > -1){
+					console.log(allNames[x]);
+					objectOfNames[newName].posters.push(c + ' S' + allPosters[z].posters[c].session_id);
+				}
+			}
+		}
+
+		for(z in sessions){
+			for(c in sessions[z].presentations){
+				if(sessions[z].presentations[c].authors.indexOf(allNames[x].trim()) > -1){
+					objectOfNames[newName].presentations.push(c + ' S' + sessions[z].presentations[c].session_id);
+				}
+			}
+		}
+
+	}
+
+	var results = '';
+
+	for(v in objectOfNames){
+		results += v + ', ';
+		for(q in objectOfNames[v].presentations){
+			results += objectOfNames[v].presentations[q] + ', ';
+		}
+		for(s in objectOfNames[v].posters){
+			results += objectOfNames[v].posters[s] + ', ';
+		}
+		results = results.substring(0, results.length - 2);
+		results += '\n';
+	}
+
+	var encodedUriMatrix = 'data:text/csv;charset=utf-8,' + encodeURIComponent(results);
+	
+	var a = $('<p>Download <a id="linkDownloadMatrix">Distance Matrix</a></p>');
+
+	$('#scheduleInfo').append(a);
+	$('#linkDownloadMatrix').attr("href", encodedUriMatrix).attr('download', "posters.txt");
+	$('#linkDownloadMatrix').trigger('click');
 
 }

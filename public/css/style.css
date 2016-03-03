@@ -17,6 +17,12 @@ table{
 
 .divider{
 	border-top: 2px solid black;
+	padding: 2%;
+}
+
+.breakLine{
+	background: white;
+	margin: 2%;
 }
 
 .firstColumn{

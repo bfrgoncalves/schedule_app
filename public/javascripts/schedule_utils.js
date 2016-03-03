@@ -15,7 +15,7 @@ function getSessions(sessionsLocation, callback){
 	read_csv(sessionsLocation, function(results){
 		for(i in results){
 			sessions[results[i].id] = {};
-			sessions[results[i].id].subject = results[i].subject;
+			sessions[results[i].id].subject = specialCasesFormat(results[i].subject);
 			sessions[results[i].id].time = results[i].time;
 		}
 		callback(sessions);
@@ -37,12 +37,12 @@ function getPosters(postersLocation, callback){
 				sessionPosters = {};
 				currentPosterSession = results[i].poster_session;
 			}
-			sessionPosters[results[i].id] = {};
-			sessionPosters[results[i].id].session_id = results[i].session_ID;
-			sessionPosters[results[i].id].title = results[i].title.toUpperCase();
-			sessionPosters[results[i].id].speaker = results[i].presenter;
-			sessionPosters[results[i].id].authors = results[i].authors;
-			sessionPosters[results[i].id].affiliations = results[i].affiliations.split(';');
+			sessionPosters['PO' + results[i].id] = {};
+			sessionPosters['PO' + results[i].id].session_id = results[i].session_ID;
+			sessionPosters['PO' + results[i].id].title = specialCasesFormat(results[i].title);
+			sessionPosters['PO' + results[i].id].speaker = results[i].presenter;
+			sessionPosters['PO' + results[i].id].authors = results[i].authors;
+			sessionPosters['PO' + results[i].id].affiliations = results[i].affiliations.split(';');
 		}
 		all_posters[currentPosterSession] = {};
 		all_posters[currentPosterSession].posters = sessionPosters;
@@ -73,6 +73,7 @@ function getPresentations(sessions, allPosters, presentationsLocation, callback)
 	var presentations = {};
 	var allNames = [];
 	var allTitles = [];
+	var allPresenters = [];
 
 	read_csv(presentationsLocation, function(results){
 		var prevSessionID = -1, countSessions = 0;
@@ -86,7 +87,7 @@ function getPresentations(sessions, allPosters, presentationsLocation, callback)
 			}
 			presentations[results[i].id] = {};
 			presentations[results[i].id].session_id = results[i].session_ID;
-			presentations[results[i].id].title = results[i].title.toUpperCase();
+			presentations[results[i].id].title = specialCasesFormat(results[i].title);
 			presentations[results[i].id].speaker = results[i].speaker;
 			presentations[results[i].id].authors = results[i].authors;
 			presentations[results[i].id].affiliations = results[i].affiliations.split(';');
@@ -101,6 +102,9 @@ function getPresentations(sessions, allPosters, presentationsLocation, callback)
 					var nameToCheck = arrayOfAuthors[x].split('_')[0].trim();
 					if(allNames.indexOf(nameToCheck) < 0) allNames.push(nameToCheck.trim());
 				}
+				var nameToCheck = sessions[i].presentations[j].speaker.trim();
+				if(allPresenters.indexOf(nameToCheck) < 0) allPresenters.push(nameToCheck.trim());
+
 				allTitles.push(sessions[i].presentations[j].title.trim());
 			}
 		}
@@ -112,10 +116,13 @@ function getPresentations(sessions, allPosters, presentationsLocation, callback)
 					var nameToCheck = arrayOfAuthors[x].split('_')[0].trim();
 					if(allNames.indexOf(nameToCheck) < 0) allNames.push(nameToCheck.trim());
 				}
+				var nameToCheck = allPosters[i].posters[j].speaker.trim();
+				if(allPresenters.indexOf(nameToCheck) < 0) allPresenters.push(nameToCheck.trim());
+
 				allTitles.push(allPosters[i].posters[j].title.trim());
 			}
 		}
 
-		callback(allNames, allTitles);
+		callback(allNames, allTitles, allPresenters);
 	});
 }
