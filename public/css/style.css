@@ -20,6 +20,10 @@ table{
 	padding: 2%;
 }
 
+.hasInfo{
+	background-color: #cfe7f6;
+}
+
 .breakLine{
 	background: white;
 	margin: 2%;

@@ -15,10 +15,6 @@ $(document).ready(function(){
 		schedule = scheduleData.schedule;
 		allPosters = scheduleData.allPosters;
 		allPresenters = scheduleData.allPresenters;
-		console.log(allPresenters);
-
-		console.log(sessions);
-		console.log(allPosters);
 
 		assignAttributesToSearch(sessions, allPosters, allnames, 'listviewName');
 		assignAttributesToSearch(sessions, allPosters, alltitles, 'listviewTitle');

@@ -25,8 +25,12 @@ function constructSchedule(schedule, sessions, allPosters){
 				$('#header' + toCheck[i]).append('<tr><td class="firstColumn"><b>Time</b></td><td class="secondColumn"><b>Topics</b></td></tr>');
 				firstTime = false;
 			}
-
-			if(schedule[toCheck[i]][j].session_id && schedule[toCheck[i]][j].session_id > 0) toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+ schedule[toCheck[i]][j].topics +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
+			if(schedule[toCheck[i]][j].session_id && parseInt(schedule[toCheck[i]][j].session_id) > 0){
+				console.log(schedule[toCheck[i]][j].session_id);
+				console.log(schedule[toCheck[i]][j].topics);
+				toAppend += '<tr class="hasInfo"><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+ schedule[toCheck[i]][j].topics +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
+			}
+			else if(schedule[toCheck[i]][j].topics.indexOf('Poster Session') > -1) toAppend += '<tr class="hasInfo"><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
 			else if(j != 'date') toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
 		}
 		toAppend = toAppend.replace(/\n/g, '<br>');
@@ -102,7 +106,7 @@ function getPosterSessionInformation(rowData, allPosters, sessions){
 	var currentIssue = -1;
 	for(i in allPosters[sessionToSearch].posters){
 		if (currentIssue != allPosters[sessionToSearch].posters[i].session_id){
-			toAppend += '<tr><td class="breakLine divider"><label><b> Session '+allPosters[sessionToSearch].posters[i].session_id +'</b></label></td><td class="breakLine divider"><label><b>' + sessions[allPosters[sessionToSearch].posters[i].session_id].subject + '</b></label></td><td class="breakLine divider"></td></tr>';
+			toAppend += '<tr><td class="breakLine divider"><label><b>Session '+allPosters[sessionToSearch].posters[i].session_id +'</b></label></td><td class="breakLine divider"><label><b>' + sessions[allPosters[sessionToSearch].posters[i].session_id].subject + '</b></label></td><td class="breakLine divider">&nbsp;</td></tr>';
 			currentIssue = allPosters[sessionToSearch].posters[i].session_id;
 		}
 		toAppend += '<tr><td class="firstPosterColumn">' + i + '</td><td class="secondPosterColumn">' + allPosters[sessionToSearch].posters[i].title + '</td><td class="thirdPosterColumn">'+allPosters[sessionToSearch].posters[i].speaker+'</td></tr>';
