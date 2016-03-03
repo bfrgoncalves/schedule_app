@@ -4,9 +4,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="public/css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" type="text/css" href="public/css/style.css">
+	<link rel="stylesheet" type="text/css" href="public/css/test.css">
 	<script type="text/javascript" src="public/javascripts/jquery-1.12.1.min.js"></script>
 	<script type="text/javascript" src="public/javascripts/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript" src="public/javascripts/papaparse.js"></script>
+	<script type="text/javascript" src="public/javascripts/stringops.js"></script>
 	<script type="text/javascript" src="public/javascripts/namesAndTitles.js"></script>
 	<script type="text/javascript" src="index.js"></script>
 	<script type="text/javascript" src="public/javascripts/readSchedule.js"></script>
@@ -16,10 +18,73 @@
 	<script type="text/javascript" src="public/javascripts/generalSchedule.js"></script>
 </head>
 <body>
+
+	<div data-role="page" data-theme="a" id="demo-page" class="my-page" data-url="demo-page">
+	    <div data-role="header">
+	        <h1>XI IMMEM</h1>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content">
+	        <ul data-role="listview" data-inset="true">
+	            <li><a href="#">
+	                <img src="../_assets/img/apple.png" class="ui-li-thumb">
+	                <h2>Sponsor A</h2>
+	                <p>Description</p>
+	                <p class="ui-li-aside">Sponsor A</p>
+	            </a></li>
+	            <li><a href="#">
+	                <img src="../_assets/img/blackberry_10.png" class="ui-li-thumb">
+	                <h2>Sponsor B</h2>
+	                <p>Description</p>
+	                <p class="ui-li-aside">Sponsor B</p>
+	            </a></li>
+	            <li><a href="#">
+	                <img src="../_assets/img/lumia_800.png" class="ui-li-thumb">
+	                <h2>Sponsor A</h2>
+	                <p>Description</p>
+	                <p class="ui-li-aside">Sponsor B</p>
+	            </a></li>
+	            <li><a href="#">
+	                <img src="../_assets/img/lumia_800.png" class="ui-li-thumb">
+	                <h2>Sponsor D</h2>
+	                <p>Description</p>
+	                <p class="ui-li-aside">Sponsor D</p>
+	            </a></li>
+	            <li><a href="#">
+	                <img src="../_assets/img/apple.png" class="ui-li-thumb">
+	                <h2>Sponsor E</h2>
+	                <p>Description</p>
+	                <p class="ui-li-aside">Sponsor E</p>
+	            </a></li>
+	            <li><a href="#">
+	                <img src="../_assets/img/blackberry_10.png" class="ui-li-thumb">
+	                <h2>Sponsor F</h2>
+	                <p>Description</p>
+	                <p class="ui-li-aside">Sponsor F</p>
+	            </a></li>
+	            <li><a href="#">
+	                <img src="../_assets/img/lumia_800.png" class="ui-li-thumb">
+	                <h2>Sponsor G</h2>
+	                <p >Description</p>
+	                <p class="ui-li-aside">Sponsor G</p>
+	            </a></li>
+	            <li><a href="#">
+	                <img src="../_assets/img/lumia_800.png" class="ui-li-thumb">
+	                <h2>Sponsor H</h2>
+	                <p>Description</p>
+	                <p class="ui-li-aside">Sponsor H</p>
+	            </a></li>
+	        </ul>
+	    </div><!-- /content -->
+	    <div style="width:100%; text-align:center;">
+	    	<a id="buttonScheduleSponsor" href="#mainPage" class="ui-btn ui-icon-home ui-btn-icon-left ui-shadow ui-corner-all">View Schedule</a>
+		</div>
+	</div>
+
 	<div data-role="page" id="mainPage">
 
 		<div data-role="panel" id="searchPanel">
 			<button class="ui-btn ui-icon-home ui-btn-icon-left ui-shadow ui-corner-all buttonHome">Home</button>
+			<a id="buttonSponsors" href="#demo-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all">Sponsors</a>
 
 			<form class="ui-filterable">
 		    	<input id="autocomplete-input-name" data-type="search" placeholder="Search by Name...">
@@ -28,10 +93,8 @@
 		    	<input id="autocomplete-input-title" data-type="search" placeholder="Search by Title...">
 			</form>
 			<ul id="listviewName" data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input-name">
-			    <li><a href="#">Test Name</a></li>
 			</ul>
 			<ul id="listviewTitle" data-role="listview" data-filter="true" data-filter-reveal="true" data-input="#autocomplete-input-title">
-			    <li><a href="#">Test Title</a></li>
 			</ul>
 		</div><!-- /panel -->
 
@@ -44,9 +107,16 @@
 
 			<div id="totalContentresults">
 				<div id="resultsDiv"></div>
-				<table id="tableResults" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-popup-theme="a">
-					<thead id="headertableResults"></thead>
-					<tbody id="bodytableResults"></tbody>
+				<div id="infoOral" style="margin-top: 2%; margin-bottom:2%;"></div>
+				<table id="tableResultsOral" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-popup-theme="a">
+					<thead id="headertableResultsOral"></thead>
+					<tbody id="bodytableResultsOral"></tbody>
+				</table>
+				<br>
+				<div id="infoPoster" style="margin-top: 2%; margin-bottom:2%;"></div>
+				<table id="tableResultsPoster" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-popup-theme="a">
+					<thead id="headertableResultsPoster"></thead>
+					<tbody id="bodytableResultsPoster"></tbody>
 				</table>
 			</div>
 
@@ -106,7 +176,7 @@
 
 
 		<div id="footerdiv" data-role="footer" data-position="fixed" style="text-align:center;">
-			<button id="buttonHome" class="ui-btn ui-icon-home ui-btn-icon-left ui-shadow ui-corner-all buttonHome">Home</button>
+			<button id="buttonSchedule" class="ui-btn ui-icon-home ui-btn-icon-left ui-shadow ui-corner-all">Schedule</button>
 		</div><!-- /footer -->
 	</div><!-- /page -->
 

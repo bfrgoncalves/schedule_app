@@ -1,4 +1,4 @@
-function constructSchedule(schedule, sessions){
+function constructSchedule(schedule, sessions, allPosters){
 
 	var days = [];
 	var prevDay = '';
@@ -41,7 +41,10 @@ function constructSchedule(schedule, sessions){
 	        return $(this).text();
 	    }).get();
 
-	    getSessionInformation(rowData, sessions);
+		if(rowData[1].indexOf('(PS') > -1){
+			getPosterSessionInformation(rowData, allPosters, sessions);
+		}
+		else getSessionInformation(rowData, sessions);
 	});
 }
 
@@ -78,6 +81,43 @@ function getSessionInformation(rowData, sessions){
 	    }).get();
 
 	    getInformation(sessions, rowData[0], 'listviewTitle');
+	});
+
+}
+
+function getPosterSessionInformation(rowData, allPosters, sessions){
+
+	var sessionToSearch = rowData[1].split('(')[1].split(')')[0];
+
+	$('#headersessionInfoTable').empty();
+	$('#bodysessionInfoTable').empty();
+	$('#sessionInfoSection').empty();
+	var toAppend = '';
+	toAppend += '<tr><td class="firstPosterColumn">Poster ID</td><td class="secondPosterColumn">Title</td><td class="thirdPosterColumn">Presenter</td></tr>';
+	$('#headersessionInfoTable').append(toAppend);
+	toAppend = '';
+	toAppend += '<p>Poster Session: ' + sessionToSearch + '</p>';
+	$('#sessionInfoSection').append(toAppend);
+	toAppend = '';
+	for(i in allPosters[sessionToSearch].posters){
+		toAppend += '<tr><td class="firstPosterColumn">' + i + '</td><td class="secondPosterColumn">' + allPosters[sessionToSearch].posters[i].title + '</td><td class="thirdPosterColumn">' + allPosters[sessionToSearch].posters[i].speaker + '</td></tr>';
+	}
+	$('#bodysessionInfoTable').append(toAppend);
+
+	$('#totalContentresults').css({'display':'none'});
+	$('#totalContentschedule').css({'display':'none'});
+	$('#totalContentsessoinInfo').css({'display':'block'});
+
+	$('#sessionInfoTable tbody tr').click(function(){
+		var rowData = $(this).children("td").map(function() {
+	        return $(this).text();
+	    }).get();
+
+	    getPosterInformation(allPosters, sessions, rowData[1], 'listviewTitle', function(results){
+	    	var totalResults = [];
+			totalResults.push(results);
+	    	displayResults(totalResults, ['Poster']);
+	    });
 	});
 
 }

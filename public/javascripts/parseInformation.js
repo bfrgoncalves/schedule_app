@@ -14,6 +14,48 @@ function parseInformation(sessions, value, method, callback){
 
 }
 
+function parsePosterInformation(allPosters, sessions, value, method, callback){
+
+	if(method == 'title'){
+		searchPosterByTitle(allPosters, sessions, value, function(results){
+			callback(results);
+		});
+
+	} 
+	if(method == 'name'){
+		searchPosterByName(allPosters, sessions, value, function(results){
+			callback(results);
+		});
+	}
+
+}
+
+function searchPosterByTitle(allPosters, sessions, value, callback){
+
+	var resultsArray = [];
+	for(i in allPosters){
+
+		for(j in allPosters[i].posters){
+			if(allPosters[i].posters[j].title == value) resultsArray.push({searched: value, presentation: allPosters[i].posters[j], presentationID: j, sessionInfo: [ allPosters[i].posters[j].session_id, sessions[allPosters[i].posters[j].session_id].subject, '']});
+		}
+	}
+	callback(resultsArray);
+}
+
+function searchPosterByName(allPosters, sessions, value, callback){
+
+	var resultsArray = [];
+	for(i in allPosters){
+		for(j in allPosters[i].posters){
+			var authors = allPosters[i].posters[j].authors.split(';');
+			for(z in authors){
+				if(authors[z].split('_')[0].trim() == value.trim()) resultsArray.push({searched: value, presentation: allPosters[i].posters[j], presentationID: j, sessionInfo: [allPosters[i].posters[j].session_id, sessions[allPosters[i].posters[j].session_id].subject, '']});
+			}
+		}
+	}
+	callback(resultsArray);
+}
+
 function searchByTitle(sessions, value, callback){
 
 	var resultsArray = [];

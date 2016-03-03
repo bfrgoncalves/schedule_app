@@ -15,7 +15,26 @@ table{
 	margin-right: 5%;
 }
 
+.divider{
+	border-top: 2px solid black;
+}
+
 .firstColumn{
+	width: 10%;
+	padding: 1%;
+}
+
+.firstPosterColumn{
+	width: 10%;
+	padding: 1%;
+}
+
+.secondPosterColumn{
+	width: 80%;
+	padding: 1%;
+}
+
+.thirdPosterColumn{
 	width: 10%;
 	padding: 1%;
 }

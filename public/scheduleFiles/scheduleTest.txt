@@ -1,1 +1,32 @@
-day	time	topics	session_id1	12:00-14:00	Registration	01	14:00-15:30	Plenary session: Bioinformatics Tools for Genomic Epidemiology	11	15:30-16:15	Opening Session	01	16:15-17:00	Keynote: Origins of diversity in microbial genomes\nSpeaker: Edward J Feil	01	17:00-17:30	Coffee break	01	17:30-18:15	Keynote: Real world epidemiology meets the genome information\nSpeaker: Jennifer Gardy	01	18:15-19:00	Keynote: Signals of time and descent in microbial genomes\nSpeaker: Caroline Colijn	01	18:15-19:00	Opening Reception	02	8:30-10:00	Plenary session: Genomics and adaptation to the host and man-made environments	22	10:00-10:30	Coffee break	02	10:30-12:00	Plenary session: Epidemiology and Public Health – Outbreaks	32	12:00-14:30	Lunch and Poster Session I	02	14:30-15:30	Industry Session: Sponsored Talks by Applied Maths and Biomérieux	02	15:30-17:00	Plenary session: Food , Zoonotic and Environmental Microbial Risks	42	17:00-17:30	Coffee break	02	17:30-19:00	Plenary session: Novel Diagnostics and Typing methodologies	53	8:30-10:00	Plenary session: Microbial Population Genomics	63	10:00-10:30	Coffee break	03	10:30-12:00	Plenary session: Antimicrobial resistance and Mobile Genetic Elements	73	12:00-13:30	Lunch and Poster Session I	03	13:30-14:30	Discussion session: Genomic Epidemiology Ontologies	03	14:30-15:30	Discussion session: Need for universal nomenclatures for strain/lineage identification	03	15:30-17:00	Plenary session: Epidemiology and Public Health : Surveillance	83	17:00-17:30	Coffee break	03	17:30-19:00	Plenary session: Late Breaker Abstracts session	94	8:30-10:00	Plenary session: Molecular epidemiology and Public Health	104	10:00-10:30	Coffee break	04	10:30-11:15	Keynote: Rapid evolutionary forces: the importance of mobile genetic elements\nSpeaker: Fernando de la Cruz	04	11:15-12:00	Keynote: Disruptive technologies in infectious disease epidemiology: the future\nSpeaker: Nick Loman	04	12:00-12:30	Closing Session	04	12:30-13:30	Beer Break sponsored by Applied Maths	0
+day	time	topics	session_id
+1	12:00-14:00	Registration	0
+1	14:00-15:30	Plenary session: Bioinformatics Tools for Genomic Epidemiology	1
+1	15:30-16:15	Opening Session	0
+1	16:15-17:00	Keynote: Origins of diversity in microbial genomes\nSpeaker: Edward J Feil	0
+1	17:00-17:30	Coffee break	0
+1	17:30-18:15	Keynote: Real world epidemiology meets the genome information\nSpeaker: Jennifer Gardy	0
+1	18:15-19:00	Keynote: Signals of time and descent in microbial genomes\nSpeaker: Caroline Colijn	0
+1	18:15-19:00	Opening Reception	0
+2	8:30-10:00	Plenary session: Genomics and adaptation to the host and man-made environments	2
+2	10:00-10:30	Coffee break	0
+2	10:30-12:00	Plenary session: Epidemiology and Public Health ‚Äì Outbreaks	3
+2	12:00-14:30	Lunch and Poster Session I (PSI)	0
+2	14:30-15:30	Industry Session: Sponsored Talks by Applied Maths and Biom√©rieux	0
+2	15:30-17:00	Plenary session: Food , Zoonotic and Environmental Microbial Risks	4
+2	17:00-17:30	Coffee break	0
+2	17:30-19:00	Plenary session: Novel Diagnostics and Typing methodologies	5
+3	8:30-10:00	Plenary session: Microbial Population Genomics	6
+3	10:00-10:30	Coffee break	0
+3	10:30-12:00	Plenary session: Antimicrobial resistance and Mobile Genetic Elements	7
+3	12:00-13:30	Lunch and Poster Session II (PSII)	0
+3	13:30-14:30	Discussion session: Genomic Epidemiology Ontologies	0
+3	14:30-15:30	Discussion session: Need for universal nomenclatures for strain/lineage identification	0
+3	15:30-17:00	Plenary session: Epidemiology and Public Health : Surveillance	8
+3	17:00-17:30	Coffee break	0
+3	17:30-19:00	Plenary session: Late Breaker Abstracts session	9
+4	8:30-10:00	Plenary session: Molecular epidemiology and Public Health	10
+4	10:00-10:30	Coffee break	0
+4	10:30-11:15	Keynote: Rapid evolutionary forces: the importance of mobile genetic elements\nSpeaker: Fernando de la Cruz	0
+4	11:15-12:00	Keynote: Disruptive technologies in infectious disease epidemiology: the future\nSpeaker: Nick Loman	0
+4	12:00-12:30	Closing Session	0
+4	12:30-13:30	Beer Break sponsored by Applied Maths	0

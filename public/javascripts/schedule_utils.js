@@ -3,7 +3,8 @@ function schedule_utils(){
 	return {
 		getSessions: getSessions,
 		getSchedule: getSchedule,
-		getPresentations: getPresentations
+		getPresentations: getPresentations,
+		getPosters: getPosters
 	}
 }
 
@@ -18,6 +19,35 @@ function getSessions(sessionsLocation, callback){
 			sessions[results[i].id].time = results[i].time;
 		}
 		callback(sessions);
+	});
+}
+
+function getPosters(postersLocation, callback){
+
+	var all_posters = {};
+	var sessionPosters = {};
+
+	read_csv(postersLocation, function(results){
+		var prevPosterSession = -1, countSessions = 0;
+		var currentPosterSession = results[0].poster_session;
+		for(i in results){
+			if(currentPosterSession != results[i].poster_session){
+				all_posters[currentPosterSession] = {};
+				all_posters[currentPosterSession].posters = sessionPosters;
+				sessionPosters = {};
+				currentPosterSession = results[i].poster_session;
+			}
+			sessionPosters[results[i].id] = {};
+			sessionPosters[results[i].id].session_id = results[i].session_ID;
+			sessionPosters[results[i].id].title = results[i].title;
+			sessionPosters[results[i].id].speaker = results[i].presenter;
+			sessionPosters[results[i].id].authors = results[i].authors;
+			sessionPosters[results[i].id].affiliations = results[i].affiliations.split(';');
+		}
+		all_posters[currentPosterSession] = {};
+		all_posters[currentPosterSession].posters = sessionPosters;
+
+		callback(all_posters);
 	});
 }
 
@@ -38,15 +68,15 @@ function getSchedule(scheduleLocation, callback){
 	});
 }
 
-function getPresentations(sessions, presentationsLocation, callback){
+function getPresentations(sessions, allPosters, presentationsLocation, callback){
 
 	var presentations = {};
 	var allNames = [];
 	var allTitles = [];
 
 	read_csv(presentationsLocation, function(results){
-		var prevSessionID = -1, countSessions = 0;;
-		currentSessionID = results[0].session_ID;
+		var prevSessionID = -1, countSessions = 0;
+		var currentSessionID = results[0].session_ID;
 
 		for(i in results){
 			if(currentSessionID != results[i].session_ID){
@@ -68,10 +98,21 @@ function getPresentations(sessions, presentationsLocation, callback){
 			for(j in sessions[i].presentations){
 				var arrayOfAuthors = sessions[i].presentations[j].authors.split(';');
 				for(x in arrayOfAuthors){
-					var nameToCheck = arrayOfAuthors[x].split('_')[0];
+					var nameToCheck = arrayOfAuthors[x].split('_')[0].trim();
 					if(allNames.indexOf(nameToCheck) < 0) allNames.push(nameToCheck.trim());
 				}
 				allTitles.push(sessions[i].presentations[j].title.trim());
+			}
+		}
+
+		for (i in allPosters){
+			for(j in allPosters[i].posters){
+				var arrayOfAuthors = allPosters[i].posters[j].authors.split(';');
+				for(x in arrayOfAuthors){
+					var nameToCheck = arrayOfAuthors[x].split('_')[0].trim();
+					if(allNames.indexOf(nameToCheck) < 0) allNames.push(nameToCheck.trim());
+				}
+				allTitles.push(allPosters[i].posters[j].title.trim());
 			}
 		}
 

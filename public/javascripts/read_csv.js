@@ -11,6 +11,7 @@ function parseData(url, callBack) {
         delimiter: "\t",
         header: true,
         dynamicTyping: true,
+        encoding: "UTF-8",
         complete: function(results) {
             callBack(results.data);
         }
