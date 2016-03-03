@@ -39,7 +39,7 @@ function getPosters(postersLocation, callback){
 			}
 			sessionPosters[results[i].id] = {};
 			sessionPosters[results[i].id].session_id = results[i].session_ID;
-			sessionPosters[results[i].id].title = results[i].title;
+			sessionPosters[results[i].id].title = results[i].title.toUpperCase();
 			sessionPosters[results[i].id].speaker = results[i].presenter;
 			sessionPosters[results[i].id].authors = results[i].authors;
 			sessionPosters[results[i].id].affiliations = results[i].affiliations.split(';');
@@ -86,7 +86,7 @@ function getPresentations(sessions, allPosters, presentationsLocation, callback)
 			}
 			presentations[results[i].id] = {};
 			presentations[results[i].id].session_id = results[i].session_ID;
-			presentations[results[i].id].title = results[i].title;
+			presentations[results[i].id].title = results[i].title.toUpperCase();
 			presentations[results[i].id].speaker = results[i].speaker;
 			presentations[results[i].id].authors = results[i].authors;
 			presentations[results[i].id].affiliations = results[i].affiliations.split(';');
