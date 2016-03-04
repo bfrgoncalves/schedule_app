@@ -26,10 +26,10 @@ function constructSchedule(schedule, sessions, allPosters){
 				firstTime = false;
 			}
 			if(schedule[toCheck[i]][j].session_id && parseInt(schedule[toCheck[i]][j].session_id) > 0){
-				toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+ schedule[toCheck[i]][j].topics +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
+				toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+ specialCasesFormat(schedule[toCheck[i]][j].topics) +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
 			}
-			else if(schedule[toCheck[i]][j].topics.indexOf('Poster Session') > -1) toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
-			else if(j != 'date') toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
+			else if(schedule[toCheck[i]][j].topics.indexOf('Poster Session') > -1) toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+specialCasesFormat(schedule[toCheck[i]][j].topics)+'</td></tr>';
+			else if(j != 'date') toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+specialCasesFormat(schedule[toCheck[i]][j].topics)+'</td></tr>';
 		}
 		toAppend = toAppend.replace(/\n/g, '<br>');
 		toAppend = toAppend.replace(/\\n/g, '<br>');
