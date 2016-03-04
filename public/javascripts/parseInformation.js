@@ -36,7 +36,9 @@ function searchPosterByTitle(allPosters, sessions, value, callback){
 	for(i in allPosters){
 
 		for(j in allPosters[i].posters){
-			if(allPosters[i].posters[j].title == value) resultsArray.push({searched: value, presentation: allPosters[i].posters[j], presentationID: j, sessionInfo: [ allPosters[i].posters[j].session_id, sessions[allPosters[i].posters[j].session_id].subject, '']});
+			var titleWithoutItalic = allPosters[i].posters[j].title.replace(/<i>/g, '');
+			titleWithoutItalic = titleWithoutItalic.replace(/<\/i>/g, '');
+			if(titleWithoutItalic == value) resultsArray.push({searched: value, presentation: allPosters[i].posters[j], presentationID: j, sessionInfo: [ allPosters[i].posters[j].session_id, sessions[allPosters[i].posters[j].session_id].subject, '']});
 		}
 	}
 	callback(resultsArray);
@@ -62,7 +64,9 @@ function searchByTitle(sessions, value, callback){
 	for(i in sessions){
 
 		for(j in sessions[i].presentations){
-			if(sessions[i].presentations[j].title == value) resultsArray.push({searched: value, presentation: sessions[i].presentations[j], presentationID: j, sessionInfo: [i, sessions[i].subject, sessions[i].time]});
+			var titleWithoutItalic = sessions[i].presentations[j].title.replace(/<i>/g, '');
+			titleWithoutItalic = titleWithoutItalic.replace(/<\/i>/g, '');
+			if(titleWithoutItalic == value) resultsArray.push({searched: value, presentation: sessions[i].presentations[j], presentationID: j, sessionInfo: [i, sessions[i].subject, sessions[i].time]});
 		}
 	}
 	callback(resultsArray);

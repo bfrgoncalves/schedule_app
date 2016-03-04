@@ -8,7 +8,7 @@ $(document).ready(function(){
 	}
 	
 	readSchedule(scheduleObject, function(scheduleData){
-		//console.log(scheduleData);
+		console.log(scheduleData);
 		sessions = scheduleData.sessions;
 		allnames = scheduleData.allNames;
 		alltitles = scheduleData.allTitles;
@@ -72,7 +72,9 @@ function assignAttributesToSearch(sessions, allPosters, arrayOfAttributes, eleme
 
 
 	$('#' + elementID + ' a').click(function(e){
-		getAllInformation(sessions, allPosters, $(this).attr('value'), elementID);
+		var titleWithoutItalic = $(this).attr('value').replace(/<i>/g, '');
+		titleWithoutItalic = titleWithoutItalic.replace(/<\/i>/g, '');
+		getAllInformation(sessions, allPosters, titleWithoutItalic, elementID);
 		//getPosterInformation(sessions, allPosters, $(this).attr('value'), elementID);
 	});
 }
@@ -90,7 +92,7 @@ function getAllInformation(sessions, allPosters, value, elementID){
 		totalResults.push(results);
 		getPosterInformation(allPosters, sessions, value, elementID, function(resultsPoster){
 			totalResults.push(resultsPoster);
-			displayResults(totalResults, ['Oral', 'Poster']);
+			displayResults(totalResults, ['Oral', 'Poster'], false);
 		});
 	});
 }
@@ -104,7 +106,7 @@ function getInformation(sessions, value, elementID){
 	parseInformation(sessions, value, method, function(results){
 		var totalResults = [];
 		totalResults.push(results);
-		displayResults(totalResults, ['Oral']);
+		displayResults(totalResults, ['Oral'], true);
 	});
 }
 
@@ -121,7 +123,7 @@ function getPosterInformation(allPosters, sessions, value, elementID, callback){
 }
 
 
-function displayResults(TotalResults, dataInfo){
+function displayResults(TotalResults, dataInfo, showBack){
 	var toAppend = '';
 	$('#bodytableResultsPoster').empty();
 	$('#bodytableResultsOral').empty();
@@ -179,7 +181,7 @@ function displayResults(TotalResults, dataInfo){
 	//$('#resultsDiv').css({'display':'block'});
 
 	$('#totalContentresults').css({'display':'block'});
-	$('#buttonBack').css({'display':'block'});
+	if(showBack == true) $('#buttonBack').css({'display':'block'});
 	$('#totalContentschedule').css({'display':'none'});
 	$('#totalContentsessoinInfo').css({'display':'none'});
 

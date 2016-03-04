@@ -1,5 +1,9 @@
 function specialCasesFormat(str){
 
+	str = str.replace(/!!!/g, '</i>');
+	str = str.replace(/!!/g, '<i>');
+
+/*
     ignore = ["NGS", "MRSA", "MLST", "SNP", "MLVA", "WGS"],
     
     regex = new RegExp(ignore.join("|"), 'i'),
@@ -11,6 +15,7 @@ function specialCasesFormat(str){
 	function capitalize(s) {
 	    return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 	}
+*/
 
-	return result;
+	return str;
 }
