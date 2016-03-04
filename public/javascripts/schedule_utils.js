@@ -37,12 +37,13 @@ function getPosters(postersLocation, callback){
 				sessionPosters = {};
 				currentPosterSession = results[i].poster_session;
 			}
-			sessionPosters['PO' + results[i].id] = {};
-			sessionPosters['PO' + results[i].id].session_id = results[i].session_ID;
-			sessionPosters['PO' + results[i].id].title = specialCasesFormat(results[i].title);
-			sessionPosters['PO' + results[i].id].speaker = results[i].presenter;
-			sessionPosters['PO' + results[i].id].authors = results[i].authors;
-			sessionPosters['PO' + results[i].id].affiliations = results[i].affiliations.split(';');
+
+			sessionPosters[results[i].id] = {};
+			sessionPosters[results[i].id].session_id = results[i].session_ID;
+			sessionPosters[results[i].id].title = specialCasesFormat(results[i].title);
+			sessionPosters[results[i].id].speaker = results[i].presenter;
+			sessionPosters[results[i].id].authors = results[i].authors;
+			sessionPosters[results[i].id].affiliations = results[i].affiliations.split(';');
 		}
 		all_posters[currentPosterSession] = {};
 		all_posters[currentPosterSession].posters = sessionPosters;

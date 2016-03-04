@@ -26,9 +26,9 @@ function constructSchedule(schedule, sessions, allPosters){
 				firstTime = false;
 			}
 			if(schedule[toCheck[i]][j].session_id && parseInt(schedule[toCheck[i]][j].session_id) > 0){
-				toAppend += '<tr class="hasInfo"><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+ schedule[toCheck[i]][j].topics +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
+				toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+ schedule[toCheck[i]][j].topics +'\nSession: ' + schedule[toCheck[i]][j].session_id + '</td></tr>';
 			}
-			else if(schedule[toCheck[i]][j].topics.indexOf('Poster Session') > -1) toAppend += '<tr class="hasInfo"><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
+			else if(schedule[toCheck[i]][j].topics.indexOf('Poster Session') > -1) toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
 			else if(j != 'date') toAppend += '<tr><td class="firstColumn">'+schedule[toCheck[i]][j].time+'</td><td class="secondColumn">'+schedule[toCheck[i]][j].topics+'</td></tr>';
 		}
 		toAppend = toAppend.replace(/\n/g, '<br>');
@@ -43,13 +43,13 @@ function constructSchedule(schedule, sessions, allPosters){
 	        return $(this).text();
 	    }).get();
 
-		if(rowData[1].indexOf('(PS') > -1){
+		if(rowData[1].indexOf('Poster Session') > -1){
 			getPosterSessionInformation(rowData, allPosters, sessions);
 		}
-		else if(rowData[1].indexOf('(DS') > -1){
-			getDiscussionInformation(rowData, sessions);
+		else if(rowData[1].indexOf('Discussion session') > -1){
+			getDiscussionInformation(rowData, allPosters, sessions);
 		}
-		else if(rowData[1].indexOf('(IP') > -1){
+		else if(rowData[1].indexOf('Industry session') > -1){
 			getIndustryInformation(rowData, sessions);
 		}
 		else getSessionInformation(rowData, sessions);
@@ -95,9 +95,7 @@ function getSessionInformation(rowData, sessions){
 
 function getIndustryInformation(rowData, sessions){
 	
-	var sessionToSearch = rowData[1].split('(')[1].split(')')[0];
-
-	console.log(sessionToSearch);
+	var sessionToSearch = 'IP1';
 
 	$('#headersessionInfoTable').empty();
 	$('#bodysessionInfoTable').empty();
@@ -129,25 +127,52 @@ function getIndustryInformation(rowData, sessions){
 
 }
 
-function getDiscussionInformation(rowData, sessions){
-	
-	var sessionToSearch = rowData[1].split('(')[1].split(')')[0];
+function getDiscussionInformation(rowData, allPosters, sessions){
 
+	if(rowData[1].indexOf('Discussion session: Genomic Epidemiology') > -1) var sessionToSearch = 'DS1';
+	else if(rowData[1].indexOf('Discussion session: Need for universal nomenclatures') > -1) var sessionToSearch = 'DS2';
+	
 	$('#headersessionInfoTable').empty();
 	$('#bodysessionInfoTable').empty();
 	$('#sessionInfoSection').empty();
+
 	var toAppend = '';
-	toAppend += '<tr><td class="secondColumn">X</td></tr>';
-	$('#headersessionInfoTable').append(toAppend);
 	toAppend = '';
-	toAppend += '<p>' + sessions[sessionToSearch].subject + '</p>';
-	toAppend += '<p>' + sessions[sessionToSearch].time + '</p>';
+	toAppend += '<p>Discussion session: ' + sessionToSearch + '</p>';
 	$('#sessionInfoSection').append(toAppend);
 	toAppend = '';
-	for(i in sessions[sessionToSearch].presentations){
-		toAppend += '<tr><td class="secondColumn"> ' + sessions[sessionToSearch].presentations[i].authors + '</td></tr>';
+
+	if(sessionToSearch=='DS1'){
+
+		var currentIssue = -1;
+		for(i in allPosters[sessionToSearch].posters){
+			if (currentIssue != allPosters[sessionToSearch].posters[i].session_id){
+				toAppend += '<tr><td class="breakLine divider" style="text-align: center;"><h4><b>Session '+allPosters[sessionToSearch].posters[i].session_id +'</b></h4></td><td class="breakLine divider"><h4><b>' + sessions[allPosters[sessionToSearch].posters[i].session_id].subject + '</b></h4></td><td class="breakLine divider">&nbsp;</td></tr>';
+				currentIssue = allPosters[sessionToSearch].posters[i].session_id;
+			}
+			toAppend += '<tr><td class="firstPosterColumn" style="text-align: center;">' + i + '</td><td class="secondPosterColumn">' + allPosters[sessionToSearch].posters[i].title + '</td><td class="thirdPosterColumn">'+allPosters[sessionToSearch].posters[i].speaker+'</td></tr>';
+		}
+		$('#bodysessionInfoTable').append(toAppend);
+
+		$('#sessionInfoTable tbody tr').click(function(){
+			var rowData = $(this).children("td").map(function() {
+		        return $(this).text();
+		    }).get();
+
+		    getPosterInformation(allPosters, sessions, rowData[1], 'listviewTitle', function(results){
+		    	var totalResults = [];
+				totalResults.push(results);
+		    	displayResults(totalResults, ['Poster'], true);
+		    });
+		});
 	}
-	$('#bodysessionInfoTable').append(toAppend);
+	else if(sessionToSearch=='DS2'){
+		for(i in sessions[sessionToSearch].presentations){
+			toAppend += '<tr><td><label><b>' + sessions[sessionToSearch].presentations[i].title + '</b></label></td></tr>';
+			toAppend += '<td><b>Speakers Panel:</b> ' + sessions[sessionToSearch].presentations[i].authors.replace(/;/g, ',') + '</td>';
+		}
+		$('#bodysessionInfoTable').append(toAppend);
+	}
 
 	$('#totalContentresults').css({'display':'none'});
 	$('#totalContentschedule').css({'display':'none'});
@@ -157,7 +182,8 @@ function getDiscussionInformation(rowData, sessions){
 
 function getPosterSessionInformation(rowData, allPosters, sessions){
 
-	var sessionToSearch = rowData[1].split('(')[1].split(')')[0];
+	if((rowData[1].indexOf('Poster Session II') > -1)) var sessionToSearch = 'PS2';
+	else if(rowData[1].indexOf('Poster Session I') > -1) var sessionToSearch = 'PS1';
 
 	$('#headersessionInfoTable').empty();
 	$('#bodysessionInfoTable').empty();

@@ -61,5 +61,4 @@ SC08	10	Implementation Of Genomics In Public Health Surveillance In The United S
 SC09	10	ECDC Strategy And Roadmap For EU Genomic Surveillance And Epidemic Preparedness	Marc Struelens	Marc Struelens_1	European Centre for Disease Prevention and Control (ECDC), Stockholm, Sweden.
 IP01	IP1	Development And Validation Of A Whole Genome MLST Schema For Salmonella Surveillance	Hannes Pouseele	Johan Goris_1; Hannes Pouseele_1; Katrien De Bruyne_1; Bruno Pot_1; Koen Janssens_1	Applied Maths NV, Belgium
 IP02	IP1	Combined Genomic Antimicrobial Susceptibility Testing And Epidemiological Typing	Alex van Belkum	Alex van Belkum_1	bioMerieux, La Balme Les Grottes. France
-DS01	DS1	Genomic Epidemiology Ontologies		Emma Griffiths; Melanie Courtot; Damion Dooley; Josh Adam; Franklin Bristow; João André Carriço; Bhavjinder K. Dhillon; Alex Keddy; Matthew Laird; Thomas Matthews; Aaron Petkau; Julie Shay; Geoff Winsor; IRIDA Ontology Advisory Consortium; Robert Beiko; Lynn M Schriml; Eduardo Taboada; Gary Van Domselaar; Morag Graham; Fiona Brikman; William Hsiao	
-DS02	DS2	Need for universal nomenclatures for strain/lineage identification			
+DS02	DS2	Need for universal nomenclatures for strain/lineage identification		Dag Harmsen; Hajo Grundmann; James McInerney	
