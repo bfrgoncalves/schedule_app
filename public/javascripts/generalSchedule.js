@@ -49,7 +49,7 @@ function constructSchedule(schedule, sessions, allPosters){
 		else if(rowData[1].indexOf('Discussion session') > -1){
 			getDiscussionInformation(rowData, allPosters, sessions);
 		}
-		else if(rowData[1].indexOf('Industry session') > -1){
+		else if(rowData[1].indexOf('Industry Session') > -1){
 			getIndustryInformation(rowData, sessions);
 		}
 		else getSessionInformation(rowData, sessions);
@@ -69,6 +69,7 @@ function getSessionInformation(rowData, sessions){
 		toAppend += '<tr><td class="timeColumn">Time</td><td class="secondColumn">Title</td><td class="firstColumn">Speaker</td></tr>';
 		$('#headersessionInfoTable').append(toAppend);
 		toAppend = '';
+		console.log(sessionToSearch);
 		toAppend += '<p>' + sessions[sessionToSearch].subject + '</p>';
 		toAppend += '<p>' + sessions[sessionToSearch].time + '</p>';
 		$('#sessionInfoSection').append(toAppend);

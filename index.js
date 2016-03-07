@@ -21,6 +21,7 @@ $(document).ready(function(){
 		constructSchedule(schedule, sessions, allPosters);
 		//exportPosters(allPosters);
 		//getPresenterInfo(allnames, allPosters, sessions)
+		//getOralNames(sessions);
 	});
 
 	$('.buttonHome').click(function(){
@@ -237,6 +238,42 @@ function exportPosters(sessions, posterInfo, allNames){
 	$('#scheduleInfo').append(a);
 	$('#linkDownloadMatrix').attr("href", encodedUriMatrix).attr('download', "posters.txt");
 	$('#linkDownloadMatrix').trigger('click');
+}
+
+function getOralNames(sessions){
+	var names = [];
+	var objectOfNames = {};
+	var results = '';
+
+	for(z in sessions){
+		for(c in sessions[z].presentations){
+			var nameSplited = sessions[z].presentations[c].speaker.split(' ');
+			var lengthName = nameSplited.length;
+			var firstName = sessions[z].presentations[c].speaker.split(' ')[0];
+			var lastName = sessions[z].presentations[c].speaker.split(' ')[lengthName-1];
+
+			var newName = lastName + ', ' + firstName;
+
+			if(!objectOfNames.hasOwnProperty(newName)){
+				names.push(newName);
+				objectOfNames[newName] = true;
+			}
+		}
+	}
+
+	for(v in names){
+		results += names[v] + '\n';
+		results += '\n';
+	}
+
+	var encodedUriMatrix = 'data:text/csv;charset=utf-8,' + encodeURIComponent(results);
+	
+	var a = $('<p>Download <a id="linkDownloadMatrix">Distance Matrix</a></p>');
+
+	$('#scheduleInfo').append(a);
+	$('#linkDownloadMatrix').attr("href", encodedUriMatrix).attr('download', "posters.txt");
+	$('#linkDownloadMatrix').trigger('click');
+
 }
 
 function getPresenterInfo(allNames, allPosters, sessions){
