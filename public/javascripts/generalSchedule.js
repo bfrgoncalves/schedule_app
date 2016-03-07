@@ -66,7 +66,7 @@ function getSessionInformation(rowData, sessions){
 		$('#bodysessionInfoTable').empty();
 		$('#sessionInfoSection').empty();
 		var toAppend = '';
-		toAppend += '<tr><td class="secondColumn">Title</td><td class="firstColumn">Speaker</td></tr>';
+		toAppend += '<tr><td class="timeColumn">Time</td><td class="secondColumn">Title</td><td class="firstColumn">Speaker</td></tr>';
 		$('#headersessionInfoTable').append(toAppend);
 		toAppend = '';
 		toAppend += '<p>' + sessions[sessionToSearch].subject + '</p>';
@@ -74,7 +74,7 @@ function getSessionInformation(rowData, sessions){
 		$('#sessionInfoSection').append(toAppend);
 		toAppend = '';
 		for(i in sessions[sessionToSearch].presentations){
-			toAppend += '<tr><td class="secondColumn">' + sessions[sessionToSearch].presentations[i].title + '</td><td class="firstColumn">' + sessions[sessionToSearch].presentations[i].speaker + '</td></tr>';
+			toAppend += '<tr><td class="timeColumn"><b>' + sessions[sessionToSearch].presentations[i].time + '</b></td><td class="secondColumn">' + sessions[sessionToSearch].presentations[i].title + '</td><td class="firstColumn">' + sessions[sessionToSearch].presentations[i].speaker + '</td></tr>';
 		}
 		$('#bodysessionInfoTable').append(toAppend);
 
@@ -88,7 +88,7 @@ function getSessionInformation(rowData, sessions){
 	        return $(this).text();
 	    }).get();
 
-	    getInformation(sessions, rowData[0], 'listviewTitle');
+	    getInformation(sessions, rowData[1], 'listviewTitle');
 	});
 
 }
