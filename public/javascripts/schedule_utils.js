@@ -92,6 +92,7 @@ function getPresentations(sessions, allPosters, presentationsLocation, callback)
 			presentations[results[i].id].speaker = results[i].speaker;
 			presentations[results[i].id].authors = results[i].authors;
 			presentations[results[i].id].affiliations = results[i].affiliations.split(';');
+			presentations[results[i].id].time = results[i].time;
 		}
 
 		sessions[currentSessionID].presentations = presentations;

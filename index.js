@@ -158,8 +158,9 @@ function displayResults(TotalResults, dataInfo, showBack){
 					affiliations[p] = '(' + (parseInt(p)+parseInt(1)) + ')' + affiliations[p];
 				}
 				toAppend += '<tr><td class="firstColumn">Affiliation:</td><td class="secondColumn"> ' + affiliations.toString() + '</td></tr>';
-				toAppend += '<tr><td class="firstColumn">Session:</td><td class="secondColumn"> ' + results[i].sessionInfo[1] + '</td></tr>';
-				//toAppend += '<tr><td class="firstColumn">Schedule:</td><td class="secondColumn"> ' + results[i].sessionInfo[2] + '</td></tr>';
+				toAppend += '<tr><td class="firstColumn">Session:</td><td class="secondColumn"> <b>' + results[i].sessionInfo[1] + '</b>, ' + results[i].sessionInfo[2] + '</td></tr>';
+
+				if(results[i].presentation.time) toAppend += '<tr><td class="firstColumn">Time of Presentation:</td><td class="secondColumn"> ' + results[i].presentation.time + '</td></tr>';
 				toAppend += '<tr></tr>';
 			}
 
