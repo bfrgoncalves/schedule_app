@@ -1,0 +1,4 @@
+day	time	announcement
+09 March	14h30	Test announcement
+09 March	15h30	second test annoucement
+10 March	08h30	third announcement

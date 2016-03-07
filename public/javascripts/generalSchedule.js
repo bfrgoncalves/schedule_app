@@ -223,3 +223,26 @@ function getPosterSessionInformation(rowData, allPosters, sessions){
 	});
 
 }
+
+function getAnnouncementInformation(announcements){
+	$('#headertableAnnouncements').empty();
+	$('#bodytableAnnouncements').empty();
+	var toAppend = '';
+
+	$('#headertableAnnouncements').append('<tr style="text-align:center;"><td class="timeColumn"><b>Day</b></td><td class="firstColumn"><b>Time</b></td><td class="secondColumn" style="text-align:left;"><b>Announcement</b></td></tr>');
+
+	for(var i=announcements.length-1; i>-1; i--){
+
+		for(var j=announcements[i].length-1; j>-1; j--){
+			toAppend += '<tr style="text-align:center;"><td class="timeColumn">' + announcements[i][j].day + '</td><td class="firstColumn">' + announcements[i][j].time + '</td><td class="secondColumn" style="text-align:left;">' + announcements[i][j].announcement + '</td><td></tr>';
+		}
+
+	}
+
+	$('#bodytableAnnouncements').append(toAppend);
+}
+
+
+
+
+

@@ -4,7 +4,8 @@ $(document).ready(function(){
 		scheduleLocation : 'public/scheduleFiles/scheduleTest.txt',
 		sessionsLocation : 'public/scheduleFiles/sessionsTest.txt',
 		presentationsLocation : 'public/scheduleFiles/presentationsTest.txt',
-		postersLocation : 'public/scheduleFiles/postersTest.txt'
+		postersLocation : 'public/scheduleFiles/postersTest.txt',
+		announcementsLocation : 'public/scheduleFiles/announcementsTest.txt'
 	}
 	
 	readSchedule(scheduleObject, function(scheduleData){
@@ -15,10 +16,12 @@ $(document).ready(function(){
 		schedule = scheduleData.schedule;
 		allPosters = scheduleData.allPosters;
 		allPresenters = scheduleData.allPresenters;
+		announcements = scheduleData.announcements;
 
 		assignAttributesToSearch(sessions, allPosters, allnames, 'listviewName');
 		assignAttributesToSearch(sessions, allPosters, alltitles, 'listviewTitle');
 		constructSchedule(schedule, sessions, allPosters);
+		getAnnouncementInformation(announcements);
 		//exportPosters(allPosters);
 		//getPresenterInfo(allnames, allPosters, sessions)
 		//getOralNames(sessions);
@@ -252,7 +255,7 @@ function getOralNames(sessions){
 			var firstName = sessions[z].presentations[c].speaker.split(' ')[0];
 			var lastName = sessions[z].presentations[c].speaker.split(' ')[lengthName-1];
 
-			var newName = lastName + ', ' + firstName;
+			var newName = firstName + ' ' + lastName;
 
 			if(!objectOfNames.hasOwnProperty(newName)){
 				names.push(newName);
@@ -263,7 +266,7 @@ function getOralNames(sessions){
 
 	for(v in names){
 		results += names[v] + '\n';
-		results += '\n';
+		//results += '\n';
 	}
 
 	var encodedUriMatrix = 'data:text/csv;charset=utf-8,' + encodeURIComponent(results);

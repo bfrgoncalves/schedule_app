@@ -7,11 +7,13 @@ function readSchedule(scheduleObject, callback){
 	var sessionsLocation = scheduleObject.sessionsLocation || 'tests/sessionsTest.txt';
 	var presentationsLocation = scheduleObject.presentationsLocation || 'tests/presentationsTest.txt';
 	var postersLocation = scheduleObject.postersLocation || 'tests/postersTest.txt';
+	var announcementsLocation = scheduleObject.announcementsLocation || 'tests/announcementsTest.txt';
 
 	var sessions = {};
 	var allNames = [];
 	var allTitles = [];
 	var schedule = [];
+	var announcements = {};
 	var presentations = [];
 	var allPosters = {};
 
@@ -21,9 +23,13 @@ function readSchedule(scheduleObject, callback){
 			allPosters = results;
 			scheduleUtils.getSchedule(scheduleLocation, function(results){
 				schedule = results;
-				scheduleUtils.getPresentations(sessions, allPosters, presentationsLocation, function(allNames, allTitles, allPresenters){
-					callback({sessions:sessions, schedule:schedule, allNames:allNames, allTitles:allTitles, allPosters:allPosters, allPresenters: allPresenters});
-				});
+				scheduleUtils.getAnnouncements(announcementsLocation, function(results){
+					announcements = results;
+					console.log(announcements);
+					scheduleUtils.getPresentations(sessions, allPosters, presentationsLocation, function(allNames, allTitles, allPresenters){
+						callback({sessions:sessions, schedule:schedule, allNames:allNames, allTitles:allTitles, allPosters:allPosters, allPresenters: allPresenters, announcements: announcements});
+					});
+				})
 			});
 		});
 	});
