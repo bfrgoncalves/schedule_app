@@ -43,11 +43,22 @@
 		</div><!-- /footer -->
 	</div>
 
+	<div data-role="page" data-theme="a" id="twitter-page" class="my-page" data-url="twitter-page">
+		<div align="center">
+			<a class="twitter-timeline tw-align-center" height="100%" href="https://twitter.com/hashtag/immem11" data-widget-id="706631937130110976">immem11 Tweets</a>
+		</div>
+
+		<div data-role="footer" data-position="fixed" style="text-align:left;">
+			<a id="buttonBackTwitter" href="#mainPage" style="text-align:left;" class="ui-btn ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all">Back</a>
+		</div><!-- /footer -->
+	</div>
+
 	<div data-role="page" id="mainPage">
 
 		<div data-role="panel" id="searchPanel">
 			<button class="ui-btn ui-icon-home ui-btn-icon-left ui-shadow ui-corner-all buttonHome">Home</button>
 			<a id="buttonSponsors" href="#demo-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all">Sponsors</a>
+			<a id="buttonTwitter" href="#twitter-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all">Tweets</a>
 
 			<form class="ui-filterable">
 		    	<input id="autocomplete-input-name" data-type="search" placeholder="Search by Name...">
@@ -151,4 +162,5 @@
 	</div><!-- /page -->
 
 </body>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </html>
