@@ -142,7 +142,8 @@ function displayResults(TotalResults, dataInfo, showBack){
 		for(d in TotalResults){
 			toAppend = '';
 			var results = TotalResults[d];
-
+			console.log(results);
+			var abstractFileName = '';
 			for(i in results){
 				toAppend += '<tr><td class="firstColumn divider"> </td><td class="secondColumn divider"> </td></tr>';
 				toAppend += '<tr><td class="firstColumn">ID:</td><td class="secondColumn"> ' + results[i].presentationID + '</td></tr>';
@@ -165,6 +166,18 @@ function displayResults(TotalResults, dataInfo, showBack){
 				toAppend += '<tr><td class="firstColumn">Session:</td><td class="secondColumn"> <b>' + results[i].sessionInfo[1] + '</b>, ' + results[i].sessionInfo[2] + '</td></tr>';
 
 				if(results[i].presentation.time) toAppend += '<tr><td class="firstColumn">Time of Presentation:</td><td class="secondColumn"> ' + results[i].presentation.time + '</td></tr>';
+				if(results[i].presentationID.indexOf('OP') > -1){
+					abstractFileName = 'OP_S' + results[i].sessionInfo[0] + '.html';
+					toAppend += '<tr><td class="firstColumn">Session Abstracts:</td><td class="secondColumn"><a filePath="'+abstractFileName+'" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts available here</a></td></tr>';
+				}
+				else if(results[i].presentationID.indexOf('PO') > -1){
+					abstractFileName = 'PO_S' + results[i].sessionInfo[0] + '.html';
+					toAppend += '<tr><td class="firstColumn">Session Abstracts:</td><td class="secondColumn"><a filePath="'+abstractFileName+'" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts available here</a></td></tr>';
+				}
+				else if(results[i].presentationID.indexOf('IP') > -1){
+					abstractFileName = 'OP_' + results[i].sessionInfo[0] + '.html';
+					toAppend += '<tr><td class="firstColumn">Session Abstracts:</td><td class="secondColumn"><a filePath="'+abstractFileName+'" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts available here</a></td></tr>';
+				}
 				toAppend += '<tr></tr>';
 			}
 
@@ -190,6 +203,19 @@ function displayResults(TotalResults, dataInfo, showBack){
 	$('#totalContentschedule').css({'display':'none'});
 	$('#totalContentsessoinInfo').css({'display':'none'});
 
+	$('.anchorPosterAbstractInfo').click(function(){
+		//console.log($(this).attr('filePath'));
+		showSessionAbstracts("public/abstracts/Webpages/" + $(this).attr('filePath'));
+	});
+
+}
+
+function showSessionAbstracts(fileName){
+
+	$('#abstractResults').empty();
+
+	$( "#abstractResults" ).load(fileName, function() {
+	});
 }
 
 

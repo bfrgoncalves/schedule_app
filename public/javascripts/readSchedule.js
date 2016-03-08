@@ -25,7 +25,6 @@ function readSchedule(scheduleObject, callback){
 				schedule = results;
 				scheduleUtils.getAnnouncements(announcementsLocation, function(results){
 					announcements = results;
-					console.log(announcements);
 					scheduleUtils.getPresentations(sessions, allPosters, presentationsLocation, function(allNames, allTitles, allPresenters){
 						callback({sessions:sessions, schedule:schedule, allNames:allNames, allTitles:allTitles, allPosters:allPosters, allPresenters: allPresenters, announcements: announcements});
 					});
