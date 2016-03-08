@@ -228,7 +228,7 @@ function getPosterSessionInformation(rowData, allPosters, sessions){
 	for(i in allPosters[sessionToSearch].posters){
 		if (currentIssue != allPosters[sessionToSearch].posters[i].session_id){
 			toAppend += '<tr toclick="no"><td class="breakLine divider" style="text-align: center;"><h4><b>Session '+allPosters[sessionToSearch].posters[i].session_id +'</b></h4></td><td class="breakLine divider"><h4><b>' + sessions[allPosters[sessionToSearch].posters[i].session_id].subject + ' </b></h4></td><td class="breakLine divider"></td></tr>';
-			toAppend += '<tr toclick="no"><td style="text-align: center;">&nbsp;</td><td><h4><b><a href="#abstracts-page" Session="'+allPosters[sessionToSearch].posters[i].session_id+'" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts</a></b></h4></td><td>&nbsp;</td></tr>';
+			toAppend += '<tr toclick="no"><td style="text-align: center;">&nbsp;</td><td><a href="#abstracts-page" Session="'+allPosters[sessionToSearch].posters[i].session_id+'" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts</a></td><td>&nbsp;</td></tr>';
 			
 			currentIssue = allPosters[sessionToSearch].posters[i].session_id;
 		}
