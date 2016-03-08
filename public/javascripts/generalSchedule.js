@@ -8,8 +8,6 @@ function constructSchedule(schedule, sessions, allPosters){
 				days.push(currentDay);
 				prevDay = currentDay;
 			}
-			//days.push(sessions[i].time.split(',').slice(0,sessions[i].time.split(',').length-1));
-		//var currentDay = schedule[i].time.split(',').slice(0,schedule[i].time.split(',').length-1);
 	}
 
 	var toCheck = [];
