@@ -226,13 +226,10 @@ function getPosterSessionInformation(rowData, allPosters, sessions){
 	$('#sessionInfoSection').append(toAppend);
 	toAppend = '';
 
-	//$('#posterAbstractInfoSection').append('<a id="anchorPosterAbstractInfo" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all">Abstracts available here</a>');
-
 	var currentIssue = -1;
 	for(i in allPosters[sessionToSearch].posters){
 		if (currentIssue != allPosters[sessionToSearch].posters[i].session_id){
 			toAppend += '<tr toclick="no"><td class="breakLine divider" style="text-align: center;"><h4><b>Session '+allPosters[sessionToSearch].posters[i].session_id +'</b></h4></td><td class="breakLine divider"><h4><b>' + sessions[allPosters[sessionToSearch].posters[i].session_id].subject + ' </b></h4></td><td class="breakLine divider"><a href="#abstracts-page" Session="'+allPosters[sessionToSearch].posters[i].session_id+'" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts</a></td></tr>';
-			//toAppend += '<tr><td></td><td><a href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts available here</a></td><td></td></tr>';
 			currentIssue = allPosters[sessionToSearch].posters[i].session_id;
 		}
 		toAppend += '<tr><td class="firstPosterColumn" style="text-align: center;">' + i + '</td><td class="secondPosterColumn">' + allPosters[sessionToSearch].posters[i].title + '</td><td class="thirdPosterColumn">'+allPosters[sessionToSearch].posters[i].speaker+'</td></tr>';
