@@ -142,7 +142,6 @@ function displayResults(TotalResults, dataInfo, showBack){
 		for(d in TotalResults){
 			toAppend = '';
 			var results = TotalResults[d];
-			console.log(results);
 			var abstractFileName = '';
 			for(i in results){
 				toAppend += '<tr><td class="firstColumn divider"> </td><td class="secondColumn divider"> </td></tr>';
@@ -175,7 +174,7 @@ function displayResults(TotalResults, dataInfo, showBack){
 					toAppend += '<tr><td class="firstColumn">Session Abstracts:</td><td class="secondColumn"><a filePath="'+abstractFileName+'" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts available here</a></td></tr>';
 				}
 				else if(results[i].presentationID.indexOf('IP') > -1){
-					abstractFileName = 'OP_' + results[i].sessionInfo[0] + '.html';
+					abstractFileName = 'OP_I' + results[i].sessionInfo[0].split('IP')[1] + '.html';
 					toAppend += '<tr><td class="firstColumn">Session Abstracts:</td><td class="secondColumn"><a filePath="'+abstractFileName+'" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all anchorPosterAbstractInfo">Abstracts available here</a></td></tr>';
 				}
 				toAppend += '<tr></tr>';
