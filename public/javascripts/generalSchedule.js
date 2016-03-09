@@ -64,13 +64,16 @@ function getSessionInformation(rowData, sessions){
 		$('#bodysessionInfoTable').empty();
 		$('#sessionInfoSection').empty();
 		$('#AbstractsInfoSection').empty();
+		//$('#sessionChairsSection').empty();
 		var toAppend = '';
 		toAppend += '<tr><td class="timeColumn">Time</td><td class="secondColumn">Title</td><td class="firstColumn">Speaker</td></tr>';
 		$('#headersessionInfoTable').append(toAppend);
 		toAppend = '';
+		//$('#sessionChairsSection').append('');
 		$('#AbstractsInfoSection').append('<a id="anchorAbstractInfo" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all">Abstracts available here</a>');
-		toAppend += '<p>' + sessions[sessionToSearch].subject + '</p>';
+		toAppend += '<p><b>S' + sessionToSearch + ' - ' + sessions[sessionToSearch].subject + '</b></p>';
 		toAppend += '<p>' + sessions[sessionToSearch].time + '</p>';
+		toAppend += '<p>Chairs: <b>' + sessions[sessionToSearch].chairs + '</b></p>';
 		$('#sessionInfoSection').append(toAppend);
 		toAppend = '';
 		for(i in sessions[sessionToSearch].presentations){
@@ -114,8 +117,9 @@ function getIndustryInformation(rowData, sessions){
 
 	$('#AbstractsInfoSection').append('<a id="anchorAbstractIndustryInfo" href="#abstracts-page" class="ui-btn ui-icon-info ui-btn-icon-left ui-shadow ui-corner-all">Abstracts available here</a>');
 	toAppend = '';
-	toAppend += '<p>' + sessions[sessionToSearch].subject + '</p>';
+	toAppend += '<p><b>' + sessions[sessionToSearch].subject + '</b></p>';
 	toAppend += '<p>' + sessions[sessionToSearch].time + '</p>';
+	toAppend += '<p>Chairs: <b>' + sessions[sessionToSearch].chairs + '</b></p>';
 	$('#sessionInfoSection').append(toAppend);
 	toAppend = '';
 	for(i in sessions[sessionToSearch].presentations){
@@ -156,7 +160,8 @@ function getDiscussionInformation(rowData, allPosters, sessions){
 
 	var toAppend = '';
 	toAppend = '';
-	toAppend += '<p>Discussion session: ' + sessionToSearch + '</p>';
+	toAppend += '<p><b>Discussion session: ' + sessionToSearch + '</b></p>';
+	toAppend += '<p>Chairs: <b>' + sessions[sessionToSearch].chairs + '</b></p>';
 	$('#sessionInfoSection').append(toAppend);
 	toAppend = '';
 
@@ -220,7 +225,7 @@ function getPosterSessionInformation(rowData, allPosters, sessions){
 	toAppend += '<tr><td class="firstPosterColumn">Poster ID</td><td class="secondPosterColumn">Title</td><td class="thirdPosterColumn">Presenter</td></tr>';
 	$('#headersessionInfoTable').append(toAppend);
 	toAppend = '';
-	toAppend += '<p>Poster Session: ' + sessionToSearch + '</p>';
+	toAppend += '<p><b>Poster Session: ' + sessionToSearch + '</b></p>';
 	$('#sessionInfoSection').append(toAppend);
 	toAppend = '';
 

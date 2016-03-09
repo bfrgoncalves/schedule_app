@@ -1,14 +1,14 @@
-id	subject	time
-1	Bioinformatics Tools for Genomic Epidemiology	Wednesday,09th March 2016,14:00-15:30
-2	Genomics and adaptation to the host and man-made environments	Thursday,10th March 2016,08:30-10:00
-3	Epidemiology and Public Health – Outbreaks	Thursday,10th March 2016,10:30-12:00
-4	Food, Zoonotic and Environmental Microbial Risks	Thursday,10th March 2016,15:30-17:00
-5	Novel Diagnostics and Typing methodologies	Thursday,10th March 2016,17:30-19:00
-6	Microbial Population Genomics	Friday,11th March 2016,08:30-10:00
-7	Antimicrobial Resistance and Mobile Genetic Elements	Friday,11th March 2016,10:30-12:00
-8	Epidemiology and Public Health : Surveillance	Friday,11th March 2016,15:30-17:00
-9	Late Breaker Abstracts session	Friday,11th March 2016,17:30-19:00
-10	Molecular epidemiology and Public Health	Saturday,12th March 2016,08:30-10:00
-IP1	Industry Session: Sponsored Talks by Applied Maths and Biomérieux	Thursday,10th March 2016,14:30-15:30
-DS1	Discussion Session: Genomic Epidemiology Ontologies	Friday,11th March 2016,13:30-14:30
-DS2	Discussion Session: Need for universal nomenclatures for strain/lineage identification	Friday,11th March 2016,14:30-15:30
+id	subject	time	chairs
+1	Bioinformatics Tools for Genomic Epidemiology	Wednesday,09th March 2016,14:00-15:30	Nick Loman and Jonathan Green
+2	Genomics and adaptation to the host and man-made environments	Thursday,10th March 2016,08:30-10:00	Sylvain Brisse and Jukka Corander
+3	Epidemiology and Public Health – Outbreaks	Thursday,10th March 2016,10:30-12:00	Guido Werner and Jacob Moran-Gilad
+4	Food, Zoonotic and Environmental Microbial Risks	Thursday,10th March 2016,15:30-17:00	Peter Gerner-Smidt and Sam Sheppard
+5	Novel Diagnostics and Typing methodologies	Thursday,10th March 2016,17:30-19:00	Ana Budimir and Richard Goering
+6	Microbial Population Genomics	Friday,11th March 2016,08:30-10:00	Edward J Feil and Rob Willems
+7	Antimicrobial Resistance and Mobile Genetic Elements	Friday,11th March 2016,10:30-12:00	Fernando de la Cruz and Frederic Laurent
+8	Epidemiology and Public Health : Surveillance	Friday,11th March 2016,15:30-17:00	Guide Werner and Richard Goering
+9	Late Breaker Abstracts session	Friday,11th March 2016,17:30-19:00	Dag Harmsen and David Aanensen
+10	Molecular epidemiology and Public Health	Saturday,12th March 2016,08:30-10:00	Sylvie van der Werf and Marc Struelens
+IP1	Industry Session: Sponsored Talks by Applied Maths and Biomérieux	Thursday,10th March 2016,14:30-15:30	Alexander Friederich and Joao Andre Carrico
+DS1	Discussion Session: Genomic Epidemiology Ontologies	Friday,11th March 2016,13:30-14:30	João André Carriço and Mário Ramirez
+DS2	Discussion Session: Need for universal nomenclatures for strain/lineage identification	Friday,11th March 2016,14:30-15:30	Ivo Van Walle

@@ -18,6 +18,7 @@ function getSessions(sessionsLocation, callback){
 			sessions[results[i].id] = {};
 			sessions[results[i].id].subject = specialCasesFormat(results[i].subject);
 			sessions[results[i].id].time = results[i].time;
+			sessions[results[i].id].chairs = results[i].chairs;
 		}
 		callback(sessions);
 	});
