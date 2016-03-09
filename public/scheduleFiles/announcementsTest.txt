@@ -1,1 +1,3 @@
 day	time	announcement
+09 March	10:00	PDF version of the programme available <a href="//www.escmid.org/fileadmin/src/media/PDFs/3Research_Projects/Conferences/IMMEM_11_Programme.pdf">here</a>
+09 March	10:00	All abstracts for download <a href="//www.escmid.org/fileadmin/src/media/PDFs/3Research_Projects/Conferences/IMMEM_11_Book_Abstracts.pdf">here</a>
